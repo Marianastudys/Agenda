@@ -1,0 +1,116 @@
+<div class="container mt-5">
+
+  <div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+      <h3 class="mb-0">Agenda de Contatos</h3>
+    </div>
+
+    <div class="card-body">
+
+      <form [formGroup]="formulario" (ngSubmit)="adicionarContato()">
+
+        <div class="mb-3">
+          <label class="form-label">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nome">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Telefone</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="telefone">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Aniversário</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="aniversario">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Tipo</label>
+
+          <select
+            class="form-select"
+            formControlName="tipo">
+
+            <option value="">Selecione</option>
+            <option value="Amigo">Amigo</option>
+            <option value="Família">Família</option>
+            <option value="Trabalho">Trabalho</option>
+
+          </select>
+        </div>
+
+        <button
+          class="btn btn-primary w-100"
+          type="submit">
+          Adicionar Contato
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+  <div class="card shadow mt-4">
+
+    <div class="card-header">
+      <h4 class="mb-0">Contatos Cadastrados</h4>
+    </div>
+
+    <div class="card-body">
+
+      <div class="table-responsive">
+
+        <table class="table table-striped table-hover">
+
+          <thead class="table-dark">
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Email</th>
+              <th>Aniversário</th>
+              <th>Tipo</th>
+            </tr>
+          </thead>
+
+          <tbody>
+
+            <tr *ngFor="let contato of contatos">
+
+              <td>{{ contato.getNome() }}</td>
+              <td>{{ contato.getTelefone() }}</td>
+              <td>{{ contato.getEmail() }}</td>
+              <td>{{ contato.getAniversario() }}</td>
+              <td>{{ contato.getTipo() }}</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
