@@ -7,7 +7,7 @@ import {
   Validators
 } from '@angular/forms';
 
-import { Contato } from '../contato';
+import { Contato } from '../classes/contato';
 
 @Component({
   selector: 'app-adiciona-contato',
