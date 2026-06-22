@@ -29,7 +29,7 @@ export class AgendaService {
   // Remover 
   remover(c: Contato): boolean {
     if (this.existe(c)) {
-      const indice = this.#contatos.indexOf(c);
+      const indice = this.#contatos.indexOf(c); //retorna a posição do objeto c 
       this.#contatos.splice(indice, 1);
       return true;
     }
