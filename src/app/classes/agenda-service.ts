@@ -11,10 +11,10 @@ export class AgendaService {
     this.#contatos = [];
   }
 
-  // 1. Criação do método 'existe' solicitado pelo enunciado
+  // Criando método existe
   existe(c: Contato): boolean {
-    if (!c) return false;
-    return this.#contatos.some(contato => contato.email === c.email);
+    const contatoEncontrado = this.#contatos.find(contato => contato.getEmail() === c.getEmail());
+    return contatoEncontrado !== undefined; // Retorna true se encontrar um contato com o mesmo email, false caso contrário
   }
 
   // 2. Método adicionar corrigido usando o 'existe'
