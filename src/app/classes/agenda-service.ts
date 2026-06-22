@@ -17,21 +17,13 @@ export class AgendaService {
     return contatoEncontrado !== undefined; // Retorna true se encontrar um contato com o mesmo email, false caso contrário
   }
 
-  // 2. Método adicionar corrigido usando o 'existe'
-  adicionar(c: Contato): boolean {
-    if (!c) return false;
-
-    // Agora usa o método 'existe' definido anteriormente
-    if (this.existe(c)) {
-      return false; // Não adiciona e retorna false se já existir
-    }
-
-    this.#contatos.push(c);
-    return true; // Adiciona e retorna true se não existir
-  }
-
-  obterTodos(): Contato[] {
-    return [...this.#contatos];
+  // Método adicionar 
+  adicionar(c: Contato): boolean { 
+    if (!this.existe(c)) {
+      this.#contatos.push(c);
+      return true
+     } 
+      return false
   }
 }
 
