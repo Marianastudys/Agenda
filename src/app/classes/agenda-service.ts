@@ -25,32 +25,14 @@ export class AgendaService {
      } 
       return false
   }
-}
 
-// Remove um contato existente na agenda.
+  // Remover 
   remover(c: Contato): boolean {
-    if (!c) return false;
-
-    // Tenta obter o índice pela referência (sugestão do exercício)
-    let indice = this.#contatos.indexOf(c);
-
-    // Caso seja um objeto com dados iguais mas referência diferente, busca por ID/Email
-    if (indice === -1) {
-      indice = this.#contatos.findIndex(contato => contato.email === c.email);
+    if (this.existe(c)) {
+      const indice = this.#contatos.indexOf(c);
+      this.#contatos.splice(indice, 1);
+      return true;
     }
-
-    // Se o contato não for encontrado em nenhum dos casos, retorna false
-    if (indice === -1) {
-      return false;
-    }
-
-    // Remove o contato usando o splice (1 elemento a partir do índice encontrado)
-    this.#contatos.splice(indice, 1);
-    return true;
+     return false;
   }
-
-  // Devolve toda a lista de contatos.
-  obterTodos(): Contato[] {
-    // Retorna uma cópia estável usando o operador spread (...) para evitar mutações diretas
-    return [...this.#contatos];
-  }
+}
