@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 
 import { Contato } from '../classes/contato';
+import { AgendaService } from '../classes/agenda-service';
 
 @Component({
   selector: 'app-adiciona-contato',
@@ -20,9 +21,10 @@ export class AdicionaContatoComponent {
 
   formulario: FormGroup;
 
-  contatos: Contato[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,
+    private agendaService: AgendaService
+  ) {
 
     this.formulario = this.fb.group({
       nome: ['', Validators.required],
@@ -46,7 +48,7 @@ export class AdicionaContatoComponent {
         this.formulario.value.tipo
       );
 
-      this.contatos.push(novoContato);
+       this.agendaService.adicionar(novoContato)
 
       this.formulario.reset();
     }
