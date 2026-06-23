@@ -20,23 +20,25 @@ import { AgendaService } from '../classes/agenda-service';
 export class AdicionaContatoComponent {
 
   formulario: FormGroup;
+  contatos: Contato[] = [];
 
-
-  constructor(private fb: FormBuilder,
+  constructor(
+    private fb: FormBuilder,
     private agendaService: AgendaService
   ) {
 
     this.formulario = this.fb.group({
       nome: ['', Validators.required],
       telefone: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       aniversario: [''],
       tipo: ['']
     });
 
+    this.contatos = this.agendaService.obterTodos();
   }
 
-  adicionarContato() {
+  adicionarContato(): void {
 
     if (this.formulario.valid) {
 
@@ -48,9 +50,23 @@ export class AdicionaContatoComponent {
         this.formulario.value.tipo
       );
 
-       this.agendaService.adicionar(novoContato)
+      const adicionado = this.agendaService.adicionar(novoContato);
 
-      this.formulario.reset();
+      if (adicionado) {
+        this.contatos = this.agendaService.obterTodos();
+        this.formulario.reset();
+      } else {
+        alert('Já existe um contato com este e-mail.');
+      }
+    }
+  }
+
+  removerContato(contato: Contato): void {
+
+    const removido = this.agendaService.remover(contato);
+
+    if (removido) {
+      this.contatos = this.agendaService.obterTodos();
     }
   }
 }
