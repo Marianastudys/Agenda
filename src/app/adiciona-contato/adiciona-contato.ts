@@ -69,4 +69,5 @@ export class AdicionaContatoComponent {
       this.contatos = this.agendaService.obterTodos();
     }
   }
+
 }

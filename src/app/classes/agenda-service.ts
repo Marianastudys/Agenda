@@ -39,4 +39,5 @@ export class AgendaService {
   obterTodos(): Contato[] {
     return this.#contatos;
   }
+
 }
